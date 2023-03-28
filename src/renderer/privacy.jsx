@@ -4,7 +4,7 @@ import styles from './privacy.css';
 
 const PrivacyElement = () => (
     <div className={styles.privacyBox}>
-        <h1>Privacy Policy</h1>
+        <h1>Privacy Policy yangon</h1>
         <i>The OpenBlock Privacy Policy was last updated: October 5, 2020</i>
         <p>
             The OpenBlock Team (&ldquo;OpenBlock&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;) understands how
