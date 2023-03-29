@@ -84,7 +84,6 @@
     "nets": "^3.2.0",
     "node-abort-controller": "^3.0.1",
     "node-fetch": "^3.2.1",
-    "suyuan-gui": "github:yang1666204/suyuan-gui#main",
     "openblock-l10n": "^3.10.20221129143535",
     "openblock-parse-release-message": "0.0.4",
     "os-locale": "^5.0.0",
@@ -95,6 +94,7 @@
     "redux": "3.7.2",
     "rimraf": "^3.0.2",
     "sudo-prompt": "^9.2.1",
+    "suyuan-gui": "github:yang1666204/suyuan-gui#main",
     "uuid": "^8.3.2",
     "webpack": "^4.43.0"
   }
