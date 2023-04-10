@@ -97,7 +97,6 @@ class LicenseElement extends React.Component {
     }
 
     handleClickLogo (e) {
-        console.log("aaa")
         copyrightInformations.forEach(item => {
             if (item.id === e.currentTarget.alt) {
                 window.open(item.link);
