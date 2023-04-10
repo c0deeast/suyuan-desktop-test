@@ -34,37 +34,37 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: OpenBlock-Desktop.exe
-          path: dist/OpenBlock-Desktop*.exe
+          name: SuYuan-Desktop.exe
+          path: dist/SuYuan-Desktop*.exe
           retention-days: 1
 
-  build-mac:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
+  # build-mac:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '14.x'
 
-      - name: Npm Install
-        run: npm ci
+  #     - name: Npm Install
+  #       run: npm ci
 
-      - name: Build Dist
-        env:
-          SUYUAN_DESKTOP_TEST: ${{ secrets.SUYUAN_DESKTOP_TEST }}
-          NODE_ENV: production
-          NODE_OPTIONS: --max_old_space_size=8192
-          CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: npm run dist
+  #     - name: Build Dist
+  #       env:
+  #         SUYUAN_DESKTOP_TEST: ${{ secrets.SUYUAN_DESKTOP_TEST }}
+  #         NODE_ENV: production
+  #         NODE_OPTIONS: --max_old_space_size=8192
+  #         CSC_IDENTITY_AUTO_DISCOVERY: false
+  #       run: npm run dist
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: OpenBlock-Desktop.dmg
-          path: dist/OpenBlock-Desktop*.dmg
-          retention-days: 1
+  #     - name: Archive production artifacts
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: OpenBlock-Desktop.dmg
+  #         path: dist/OpenBlock-Desktop*.dmg
+  #         retention-days: 1
 
   build-linux:
     runs-on: ubuntu-latest
@@ -90,6 +90,6 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: OpenBlock-Desktop.deb
-          path: dist/OpenBlock-Desktop*.deb
+          name: SuYuan-Desktop.deb
+          path: dist/SuYuan-Desktop*.deb
           retention-days: 1

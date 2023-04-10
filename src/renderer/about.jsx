@@ -3,7 +3,7 @@ import {productName, version} from '../../package.json';
 
 import logo from '../icon/OpenBlockDesktop.svg';
 import styles from './about.css';
-
+console.log("aaa")
 const AboutElement = () => (
     <div className={styles.aboutBox}>
         <div><img
