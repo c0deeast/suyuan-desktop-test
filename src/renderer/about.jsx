@@ -1,5 +1,5 @@
 import React from 'react';
-import {productName, version} from '../../package.json';
+import {version} from '../../package.json';
 
 import logo from '../icon/OpenBlockDesktop.svg';
 import styles from './about.css';
@@ -7,12 +7,12 @@ console.log("aaa")
 const AboutElement = () => (
     <div className={styles.aboutBox}>
         <div><img
-            alt={`${productName} icon`}
+            alt={`SuYuanDesktop icon`}
             src={logo}
             className={styles.aboutLogo}
         /></div>
         <div className={styles.aboutText}>
-            <h2>{productName}</h2>
+            <h2>SuYuanDesktop</h2>
             Version {version}
             <table className={styles.aboutDetails}><tbody>
                 {

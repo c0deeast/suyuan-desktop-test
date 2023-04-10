@@ -265,7 +265,7 @@ const createAboutWindow = () => {
         height: 400,
         parent: _windows.main,
         search: 'route=about',
-        title: `About ${productName}`
+        title: `About SuYuanDesktop`
     });
     return window;
 };
@@ -276,7 +276,7 @@ const createLicenseWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=license',
-        title: `${productName} License`
+        title: `SuYuanDesktop License`
     });
     return window;
 };
@@ -287,7 +287,7 @@ const createPrivacyWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=privacy',
-        title: `${productName} Privacy Policy`
+        title: `SuYuanDesktop Privacy Policy`
     });
     return window;
 };
@@ -301,7 +301,7 @@ const createLoadingWindow = () => {
         transparent: true,
         hasShadow: false,
         search: 'route=loading',
-        title: `Loding ${productName} ${version}`
+        title: `Loding SuYuanDesktop ${version}`
     });
 
     window.once('ready-to-show', () => {
@@ -323,7 +323,7 @@ const createMainWindow = () => {
     const window = createWindow({
         width: defaultSize.width,
         height: defaultSize.height,
-        title: `${productName} ${version}` // something like "Scratch 3.14"
+        title: `SuYuanDesktop ${version}` // something like "Scratch 3.14"
     });
     const webContents = window.webContents;
 
@@ -406,7 +406,7 @@ const createMainWindow = () => {
 
     webContents.on('will-prevent-unload', ev => {
         const choice = dialog.showMessageBoxSync(window, {
-            title: productName,
+            title: 'SuYuanDesktop',
             type: 'question',
             message: formatMessage({
                 id: 'index.questionLeave',

@@ -7,7 +7,6 @@ import ElectronStore from 'electron-store';
 
 import compareVersions from 'compare-versions';
 import sudo from 'sudo-prompt';
-import {productName} from '../../package.json';
 
 import OpenBlockLink from 'openblock-link';
 import OpenblockResourceServer from 'openblock-resource';
@@ -57,7 +56,7 @@ class OpenblockDesktopLink {
         } else if ((os.platform() === 'darwin')) {
             spawn('sh', ['install.sh'], {shell: true, cwd: driverPath});
         } else if ((os.platform() === 'linux')) {
-            sudo.exec(`sh ${path.join(driverPath, 'linux_setup.sh')} yang`, {name: productName},
+            sudo.exec(`sh ${path.join(driverPath, 'linux_setup.sh')} yang`, {name: "SuYuanDesktop"},
                 error => {
                     if (error) throw error;
                     if (callback) {
