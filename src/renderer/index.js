@@ -24,12 +24,12 @@ case 'app':
 case 'about':
     routeModulePromise = import('./about.jsx');
     break;
-case 'license':
-    routeModulePromise = import('./license.jsx');
-    break;
-case 'privacy':
-    routeModulePromise = import('./privacy.jsx');
-    break;
+// case 'license':
+//     routeModulePromise = import('./license.jsx');
+//     break;
+// case 'privacy':
+//     routeModulePromise = import('./privacy.jsx');
+//     break;
 }
 
 routeModulePromise.then(routeModule => {
