@@ -235,7 +235,7 @@ const ScratchDesktopGUIHOC = function (WrappedComponent) {
         onLoadingCompleted: PropTypes.func,
         onLoadingStarted: PropTypes.func,
         onRequestNewProject: PropTypes.func,
-        onTelemetrySettingsClicked: PropTypes.func,
+        // onTelemetrySettingsClicked: PropTypes.func,
         onSetUpdate: PropTypes.func,
         // using PropTypes.instanceOf(VM) here will cause prop type warnings due to VM mismatch
         vm: GUIComponent.WrappedComponent.propTypes.vm
@@ -272,7 +272,7 @@ const ScratchDesktopGUIHOC = function (WrappedComponent) {
             dispatch(setUpdate(arg));
             dispatch(openUpdateModal());
         },
-        onTelemetrySettingsClicked: () => dispatch(openTelemetryModal())
+        // onTelemetrySettingsClicked: () => dispatch(openTelemetryModal())
     });
 
     return connect(mapStateToProps, mapDispatchToProps)(ScratchDesktopGUIComponent);

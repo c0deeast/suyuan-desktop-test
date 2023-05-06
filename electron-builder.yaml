@@ -4,14 +4,14 @@ directories:
 extraFiles: ['LICENSE', 'LICENSE.ScratchFoundation', 'TRADEMARK', "tools", "external-resources", 'firmwares', "drivers"]
 
 appId: openblock.cc.openblock-desktop
-productName: "SuYuanDesktop"
+productName: "创造元AI"
 publish:
   - provider: github
   - provider: spaces
     name: suyuan
     path: desktop
     region: sgp1
-artifactName: "SuYuan-Desktop_v${version}_${os}_${arch}.${ext}"
+artifactName: "创造元AI_v${version}_${os}_${arch}.${ext}"
 
 fileAssociations:
   ext: ob

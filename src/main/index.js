@@ -1,28 +1,28 @@
-import {BrowserWindow, Menu, app, dialog, ipcMain, shell, systemPreferences} from 'electron';
+import { BrowserWindow, Menu, app, dialog, ipcMain, shell, systemPreferences } from 'electron';
 import * as remote from '@electron/remote/main';
 import fs from 'fs-extra';
 import path from 'path';
-import {URL} from 'url';
-import {promisify} from 'util';
+import { URL } from 'url';
+import { promisify } from 'util';
 
 import argv from './argv';
-import {getFilterForExtension} from './FileFilters';
+import { getFilterForExtension } from './FileFilters';
 import telemetry from './OpenblockDesktopTelemetry';
 import Updater from './OpenblockDesktopUpdater';
 import DesktopLink from './OpenblockDesktopLink.js';
 import MacOSMenu from './MacOSMenu';
 import log from '../common/log.js';
-import {productName, version} from '../../package.json';
+import { productName, version } from '../../package.json';
 
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import ElectronStore from 'electron-store';
 import formatMessage from 'format-message';
-import locales from 'openblock-l10n/locales/desktop-msgs';
+import locales from 'suyuan-l10n/locales/desktop-msgs';
 
 const storage = new ElectronStore();
 const desktopLink = new DesktopLink();
 
-formatMessage.setup({translations: locales});
+formatMessage.setup({ translations: locales });
 
 // suppress deprecation warning; this will be the default in Electron 9
 app.allowRendererProcessReuse = true;
@@ -36,7 +36,7 @@ app.commandLine.hasSwitch('ignore-gpu-blacklist');
 
 telemetry.appWasOpened();
 
-const defaultSize = {width: 1620, height: 900};
+const defaultSize = { width: 1620, height: 900 };
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -67,65 +67,65 @@ const displayPermissionDeniedWarning = (browserWindow, permissionType) => {
     let title;
     let message;
     switch (permissionType) {
-    case 'camera':
-        title = formatMessage({
-            id: 'index.cameraPermissionDeniedTitle',
-            default: 'Camera Permission Denied',
-            description: 'prompt for camera permission denied'
-        });
-        message = formatMessage({
-            id: 'index.cameraPermissionDeniedMessage',
-            default: 'Permission to use the camera has been denied. ' +
-                'OpenBlock will not be able to take a photo or use video sensing blocks.',
-            description: 'message for camera permission denied'
-        });
-        break;
-    case 'microphone':
-        title = formatMessage({
-            id: 'index.microphonePermissionDeniedTitle',
-            default: 'Microphone Permission Denied',
-            description: 'prompt for microphone permission denied'
-        });
-        message = formatMessage({
-            id: 'index.microphonePermissionDeniedMessage',
-            default: 'Permission to use the microphone has been denied. ' +
+        case 'camera':
+            title = formatMessage({
+                id: 'index.cameraPermissionDeniedTitle',
+                default: 'Camera Permission Denied',
+                description: 'prompt for camera permission denied'
+            });
+            message = formatMessage({
+                id: 'index.cameraPermissionDeniedMessage',
+                default: 'Permission to use the camera has been denied. ' +
+                    'OpenBlock will not be able to take a photo or use video sensing blocks.',
+                description: 'message for camera permission denied'
+            });
+            break;
+        case 'microphone':
+            title = formatMessage({
+                id: 'index.microphonePermissionDeniedTitle',
+                default: 'Microphone Permission Denied',
+                description: 'prompt for microphone permission denied'
+            });
+            message = formatMessage({
+                id: 'index.microphonePermissionDeniedMessage',
+                default: 'Permission to use the microphone has been denied. ' +
                     'OpenBlock will not be able to record sounds or detect loudness.',
-            description: 'message for microphone permission denied'
-        });
-        break;
-    default: // shouldn't ever happen...
-        title = formatMessage({
-            id: 'index.permissionDeniedTitle',
-            default: 'Permission Denied',
-            description: 'prompt for permission denied'
-        });
-        message = formatMessage({
-            id: 'index.permissionDeniedMessage',
-            default: 'A permission has been denied.',
-            description: 'message for permission denied'
-        });
+                description: 'message for microphone permission denied'
+            });
+            break;
+        default: // shouldn't ever happen...
+            title = formatMessage({
+                id: 'index.permissionDeniedTitle',
+                default: 'Permission Denied',
+                description: 'prompt for permission denied'
+            });
+            message = formatMessage({
+                id: 'index.permissionDeniedMessage',
+                default: 'A permission has been denied.',
+                description: 'message for permission denied'
+            });
     }
 
     let instructions;
     switch (process.platform) {
-    case 'darwin':
-        instructions = formatMessage({
-            id: 'index.darwinPermissionDeniedInstructions',
-            default: 'To change OpenBlock permissions, please check "Security & Privacy" in System Preferences.',
-            description: 'prompt for fix darwin permission denied instructions'
-        });
-        break;
-    default:
-        instructions = formatMessage({
-            id: 'index.permissionDeniedInstructions',
-            default: 'To change OpenBlock permissions, please check your system settings and restart OpenBlock.',
-            description: 'prompt for fix permission denied instructions'
-        });
-        break;
+        case 'darwin':
+            instructions = formatMessage({
+                id: 'index.darwinPermissionDeniedInstructions',
+                default: 'To change OpenBlock permissions, please check "Security & Privacy" in System Preferences.',
+                description: 'prompt for fix darwin permission denied instructions'
+            });
+            break;
+        default:
+            instructions = formatMessage({
+                id: 'index.permissionDeniedInstructions',
+                default: 'To change OpenBlock permissions, please check your system settings and restart OpenBlock.',
+                description: 'prompt for fix permission denied instructions'
+            });
+            break;
     }
     message = `${message}\n\n${instructions}`;
 
-    dialog.showMessageBox(browserWindow, {type: 'warning', title, message});
+    dialog.showMessageBox(browserWindow, { type: 'warning', title, message });
 };
 
 /**
@@ -188,15 +188,15 @@ const handlePermissionRequest = async (webContents, permission, callback, detail
     let askForCamera = false;
     for (const mediaType of details.mediaTypes) {
         switch (mediaType) {
-        case 'audio':
-            askForMicrophone = true;
-            break;
-        case 'video':
-            askForCamera = true;
-            break;
-        default:
-            // deny: unhandled media type
-            return callback(false);
+            case 'audio':
+                askForMicrophone = true;
+                break;
+            case 'video':
+                askForCamera = true;
+                break;
+            default:
+                // deny: unhandled media type
+                return callback(false);
         }
     }
     const parentWindow = _windows.main; // if we ever allow media in non-main windows we'll also need to change this
@@ -217,7 +217,7 @@ const handlePermissionRequest = async (webContents, permission, callback, detail
     return callback(true);
 };
 
-const createWindow = ({search = null, url = 'index.html', ...browserWindowOptions}) => {
+const createWindow = ({ search = null, url = 'index.html', ...browserWindowOptions }) => {
     const window = new BrowserWindow({
         useContentSize: true,
         show: false,
@@ -241,7 +241,7 @@ const createWindow = ({search = null, url = 'index.html', ...browserWindowOption
             !input.isAutoRepeat &&
             !input.isComposing) {
             event.preventDefault();
-            webContents.openDevTools({mode: 'detach', activate: true});
+            webContents.openDevTools({ mode: 'detach', activate: true });
         }
     });
 
@@ -265,7 +265,7 @@ const createAboutWindow = () => {
         height: 400,
         parent: _windows.main,
         search: 'route=about',
-        title: `About SuYuanDesktop`
+        title: `关于创造元AI`
     });
     return window;
 };
@@ -276,7 +276,7 @@ const createLicenseWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=license',
-        title: `SuYuanDesktop License`
+        title: `创造元AI许可证`
     });
     return window;
 };
@@ -287,7 +287,7 @@ const createPrivacyWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=privacy',
-        title: `SuYuanDesktop Privacy Policy`
+        title: `创造元AI隐私政策`
     });
     return window;
 };
@@ -301,7 +301,7 @@ const createLoadingWindow = () => {
         transparent: true,
         hasShadow: false,
         search: 'route=loading',
-        title: `Loding SuYuanDesktop ${version}`
+        title: `创造元AI ${version}加载中`
     });
 
     window.once('ready-to-show', () => {
@@ -313,8 +313,8 @@ const createLoadingWindow = () => {
 
 const getIsProjectSave = downloadItem => {
     switch (downloadItem.getMimeType()) {
-    case 'application/x.openblock.ob':
-        return true;
+        case 'application/x.openblock.ob':
+            return true;
     }
     return false;
 };
@@ -323,7 +323,7 @@ const createMainWindow = () => {
     const window = createWindow({
         width: defaultSize.width,
         height: defaultSize.height,
-        title: `SuYuanDesktop ${version}` // something like "Scratch 3.14"
+        title: `创造元AI ${version}` // something like "Scratch 3.14"
     });
     const webContents = window.webContents;
 
@@ -360,10 +360,10 @@ const createMainWindow = () => {
                         // The download was canceled or interrupted. Cancel the telemetry event and delete the file.
                         throw new Error(`save ${doneState}`); // "save cancelled" or "save interrupted"
                     }
-                    await fs.move(tempPath, userChosenPath, {overwrite: true});
+                    await fs.move(tempPath, userChosenPath, { overwrite: true });
                     if (isProjectSave) {
                         const newProjectTitle = path.basename(userChosenPath, extName);
-                        webContents.send('setTitleFromSave', {title: newProjectTitle});
+                        webContents.send('setTitleFromSave', { title: newProjectTitle });
 
                         // "setTitleFromSave" will set the project title but GUI has already reported the telemetry
                         // event using the old title. This call lets the telemetry client know that the save was
@@ -406,17 +406,18 @@ const createMainWindow = () => {
 
     webContents.on('will-prevent-unload', ev => {
         const choice = dialog.showMessageBoxSync(window, {
-            title: 'SuYuanDesktop',
+            title: '创造元AI',
             type: 'question',
             message: formatMessage({
                 id: 'index.questionLeave',
-                default: 'Leave Openblock?',
-                description: 'prompt for leave Openblock'
+                // default: 'Leave Openblock?',
+                default:'Leave SuYuanDesktop',
+                description: 'prompt for leave SuYuanDesktop'
             }),
             detail: formatMessage({
                 id: 'index.questionLeaveDetail',
                 default: 'Any unsaved changes will be lost.',
-                description: 'detail prompt for leave Openblock'
+                description: 'detail prompt for leave SuYuanDesktop'
             }),
             buttons: [
                 formatMessage({
@@ -514,7 +515,7 @@ if (process.platform === 'win32') {
 app.on('ready', () => {
     if (isDevelopment) {
         import('electron-devtools-installer').then(importedModule => {
-            const {default: installExtension, ...devToolsExtensions} = importedModule;
+            const { default: installExtension, ...devToolsExtensions } = importedModule;
             const extensionsToInstall = [
                 devToolsExtensions.REACT_DEVELOPER_TOOLS,
                 devToolsExtensions.REACT_PERF,
@@ -549,56 +550,57 @@ app.on('ready', () => {
     });
 
     // create a loading windows let user know the app is starting
-    _windows.loading = createLoadingWindow();
-    _windows.loading.once('show', () => {
-        desktopLink.updateCahce();
-        desktopLink.start()
-            .then(() => {
-                _windows.main = createMainWindow();
-                _windows.main.on('closed', () => {
-                    delete _windows.main;
-                });
-                _windows.about = createAboutWindow();
-                _windows.about.on('close', event => {
-                    event.preventDefault();
-                    _windows.about.hide();
-                });
-                _windows.license = createLicenseWindow();
-                _windows.license.on('close', event => {
-                    event.preventDefault();
-                    _windows.license.hide();
-                });
-                _windows.privacy = createPrivacyWindow();
-                _windows.privacy.on('close', event => {
-                    event.preventDefault();
-                    _windows.privacy.hide();
-                });
-
-                // after finsh load progress show main window and close loading window
-                _windows.main.show();
-                _windows.loading.close();
-                delete _windows.loading;
-            })
-            .catch(async e => {
-            // TODO: report error via telemetry
-                await dialog.showMessageBox(_windows.loading, {
-                    type: 'error',
-                    title: formatMessage({
-                        id: 'index.initialResourcesFailedTitle',
-                        default: 'Failed to initialize resources',
-                        description: 'Title for initialize resources failed'
-                    }),
-                    message: `${formatMessage({
-                        id: 'index.initializeResourcesFailed',
-                        default: 'Initialize resources failed',
-                        description: 'prompt for initialize resources failed'
-                    })}`,
-                    detail: e
-                });
-
-                app.exit();
+    //取消Loading
+    // _windows.loading = createLoadingWindow();
+    // _windows.loading.once('show', () => {
+    desktopLink.updateCahce();
+    desktopLink.start()
+        .then(() => {
+            _windows.main = createMainWindow();
+            _windows.main.on('closed', () => {
+                delete _windows.main;
             });
-    });
+            _windows.about = createAboutWindow();
+            _windows.about.on('close', event => {
+                event.preventDefault();
+                _windows.about.hide();
+            });
+            _windows.license = createLicenseWindow();
+            _windows.license.on('close', event => {
+                event.preventDefault();
+                _windows.license.hide();
+            });
+            _windows.privacy = createPrivacyWindow();
+            _windows.privacy.on('close', event => {
+                event.preventDefault();
+                _windows.privacy.hide();
+            });
+
+            // after finsh load progress show main window and close loading window
+            _windows.main.show();
+            // _windows.loading.close();
+            delete _windows.loading;
+        })
+        .catch(async e => {
+            // TODO: report error via telemetry
+            await dialog.showMessageBox(_windows.loading, {
+                type: 'error',
+                title: formatMessage({
+                    id: 'index.initialResourcesFailedTitle',
+                    default: 'Failed to initialize resources',
+                    description: 'Title for initialize resources failed'
+                }),
+                message: `${formatMessage({
+                    id: 'index.initializeResourcesFailed',
+                    default: 'Initialize resources failed',
+                    description: 'prompt for initialize resources failed'
+                })}`,
+                detail: e
+            });
+
+            app.exit();
+        });
+    // });
 });
 
 ipcMain.on('open-about-window', () => {
@@ -614,7 +616,7 @@ ipcMain.on('open-privacy-policy-window', () => {
 });
 
 ipcMain.on('set-locale', (event, arg) => {
-    formatMessage.setup({locale: arg});
+    formatMessage.setup({ locale: arg });
 });
 
 

@@ -33,14 +33,15 @@ const ScratchDesktopAppStateHOC = function (WrappedComponent) {
             });
         }
         render () {
+            // 应该返回false  typeof ipcRenderer.sendSync('getTelemetryDidOptIn') 应该返回一个布尔类型
             const shouldShowTelemetryModal = (typeof ipcRenderer.sendSync('getTelemetryDidOptIn') !== 'boolean');
-
+            console.log("shouldShowTelemetryModal",shouldShowTelemetryModal)
             return (<WrappedComponent
                 isTelemetryEnabled={this.state.telemetryDidOptIn}
                 onTelemetryModalOptIn={this.handleTelemetryModalOptIn}
                 onTelemetryModalOptOut={this.handleTelemetryModalOptOut}
-                showTelemetryModal={shouldShowTelemetryModal}
-
+                // showTelemetryModal={shouldShowTelemetryModal}
+                showTelemetryModal={false}
                 // allow passed-in props to override any of the above
                 {...this.props}
             />);

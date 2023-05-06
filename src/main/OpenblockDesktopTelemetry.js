@@ -19,7 +19,7 @@ const EVENT_TEMPLATE = {
     }
 };
 
-const APP_ID = 'suyuan-desktop';
+const APP_ID = '创造元AI';
 const APP_VERSION = app.getVersion();
 const APP_INFO = Object.freeze({
     projectName: `${APP_ID} ${APP_VERSION}`
@@ -96,6 +96,7 @@ ipcMain.handle('getTelemetryDidOptIn', () =>
 );
 // `on` works with `sendSync` (and `send`)
 ipcMain.on('getTelemetryDidOptIn', event => {
+    // scratchDesktopTelemetrySingleton.didOptIn 这是ipcRenderer.sendSync的返回值
     event.returnValue = scratchDesktopTelemetrySingleton.didOptIn;
 });
 ipcMain.on('setTelemetryDidOptIn', (event, arg) => {

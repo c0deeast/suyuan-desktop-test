@@ -56,7 +56,7 @@ class OpenblockDesktopLink {
         } else if ((os.platform() === 'darwin')) {
             spawn('sh', ['install.sh'], {shell: true, cwd: driverPath});
         } else if ((os.platform() === 'linux')) {
-            sudo.exec(`sh ${path.join(driverPath, 'linux_setup.sh')} yang`, {name: "SuYuanDesktop"},
+            sudo.exec(`sh ${path.join(driverPath, 'linux_setup.sh')} yang`, {name: "创造元AI"},
                 error => {
                     if (error) throw error;
                     if (callback) {
