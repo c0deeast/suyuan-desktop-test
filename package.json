@@ -1,7 +1,7 @@
 {
   "name": "suyuan-desktop",
-  "productName": "创造元AI",
-  "description": "SuYuan as a self-contained desktop application",
+  "productName": "Acrebot",
+  "description": "Acrebot as a self-contained desktop application",
   "author": "Openblock.cc Team <contact@openblock.cc> (http://www.openblock.cc/)",
   "version": "3.0.0",
   "license": "MIT",
@@ -39,8 +39,7 @@
     "openblock-link": "^0.2.0-prerelease.20221129121549",
     "openblock-resource": "^0.2.0-prerelease.20220716123724",
     "postinstall": "^0.7.4",
-    "source-map-support": "^0.5.19",
-    "suyuan-l10n": "^3.10.9"
+    "source-map-support": "^0.5.19"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.53.1",
@@ -95,6 +94,7 @@
     "rimraf": "^3.0.2",
     "sudo-prompt": "^9.2.1",
     "suyuan-gui": "github:yang1666204/suyuan-gui#main",
+    "suyuan-l10n": "^3.10.12",
     "uuid": "^8.3.2",
     "webpack": "^4.43.0"
   }
