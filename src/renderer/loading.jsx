@@ -7,7 +7,7 @@ const LoadingElement = () => (
     <div className={styles.loadingBox}>
         <div>
             <img
-                alt={`创造元AI loading icon`}
+                alt={`AcrebotAI loading icon`}
                 src={logo}
                 className={styles.loadingLogo}
             />

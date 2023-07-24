@@ -34,8 +34,8 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: 创造元AI.exe
-          path: dist/创造元AI*.exe
+          name: AcrebotAI.exe
+          path: dist/AcrebotAI*.exe
           retention-days: 1
 
   # build-mac:
@@ -90,6 +90,6 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: 创造元AI.deb
-          path: dist/创造元AI*.deb
+          name: AcrebotAI.deb
+          path: dist/AcrebotAI*.deb
           retention-days: 1

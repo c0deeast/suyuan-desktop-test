@@ -4,17 +4,17 @@ directories:
 extraFiles: ['LICENSE', 'LICENSE.ScratchFoundation', 'TRADEMARK', "tools", "external-resources", 'firmwares', "drivers"]
 
 appId: openblock.cc.openblock-desktop
-productName: "创造元AI"
+productName: "AcrebotAI"
 publish:
   - provider: github
   - provider: spaces
     name: suyuan
     path: desktop
     region: sgp1
-artifactName: "创造元AI_v${version}_${os}_${arch}.${ext}"
+artifactName: "AcrebotAI_v${version}_${os}_${arch}.${ext}"
 
 fileAssociations:
-  ext: ob
+  ext: sb3
   name: OpenBlock project file
   role: Editor
   icon: buildResources/SuYuan.ico

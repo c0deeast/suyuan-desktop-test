@@ -19,7 +19,7 @@ const EVENT_TEMPLATE = {
     }
 };
 
-const APP_ID = '创造元AI';
+const APP_ID = 'AcrebotAI';
 const APP_VERSION = app.getVersion();
 const APP_INFO = Object.freeze({
     projectName: `${APP_ID} ${APP_VERSION}`

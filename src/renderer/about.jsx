@@ -6,12 +6,12 @@ import styles from './about.css';
 const AboutElement = () => (
     <div className={styles.aboutBox}>
         <div><img
-            alt={`创造元AI icon`}
+            alt={`AcrebotAI icon`}
             src={logo}
             className={styles.aboutLogo}
         /></div>
         <div className={styles.aboutText}>
-            <h2>创造元AI</h2>
+            <h2>AcrebotAI</h2>
             Version {version}
             <table className={styles.aboutDetails}><tbody>
                 {

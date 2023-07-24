@@ -265,7 +265,7 @@ const createAboutWindow = () => {
         height: 400,
         parent: _windows.main,
         search: 'route=about',
-        title: `关于创造元AI`
+        title: `关于AcrebotAI`
     });
     return window;
 };
@@ -276,7 +276,7 @@ const createLicenseWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=license',
-        title: `创造元AI许可证`
+        title: `AcrebotAI许可证`
     });
     return window;
 };
@@ -287,7 +287,7 @@ const createPrivacyWindow = () => {
         height: _windows.main.height * 0.8,
         parent: _windows.main,
         search: 'route=privacy',
-        title: `创造元AI隐私政策`
+        title: `AcrebotAI隐私政策`
     });
     return window;
 };
@@ -301,7 +301,7 @@ const createLoadingWindow = () => {
         transparent: true,
         hasShadow: false,
         search: 'route=loading',
-        title: `创造元AI ${version}加载中`
+        title: `AcrebotAI ${version}加载中`
     });
 
     window.once('ready-to-show', () => {
@@ -323,7 +323,7 @@ const createMainWindow = () => {
     const window = createWindow({
         width: defaultSize.width,
         height: defaultSize.height,
-        title: `创造元AI ${version}` // something like "Scratch 3.14"
+        title: `AcrebotAI ${version}` // something like "Scratch 3.14"
     });
     const webContents = window.webContents;
 
@@ -406,7 +406,7 @@ const createMainWindow = () => {
 
     webContents.on('will-prevent-unload', ev => {
         const choice = dialog.showMessageBoxSync(window, {
-            title: '创造元AI',
+            title: 'AcrebotAI',
             type: 'question',
             message: formatMessage({
                 id: 'index.questionLeave',

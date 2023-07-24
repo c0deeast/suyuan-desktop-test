@@ -3,7 +3,7 @@
   "productName": "Acrebot",
   "description": "Acrebot as a self-contained desktop application",
   "author": "Openblock.cc Team <contact@openblock.cc> (http://www.openblock.cc/)",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "license": "MIT",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
